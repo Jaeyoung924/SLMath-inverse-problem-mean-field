@@ -1,6 +1,6 @@
 % close all;
 clear all;
-rng(0);
+rng(0); 
 
 %% Set dimension
 Total_N = 500;
