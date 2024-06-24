@@ -4,11 +4,11 @@ rng(0);
 
 %% Set dimension
 Total_N = 500;
-N = 150; % number of theta
+N = 200; % number of theta
 Total_M = 200;
 M = 100; % number of given data
 stop_criterion = 10^(-8);
-max_iter = 100000;
+max_iter = 1000;
 ht = 0.2; Nt = int64(1/ht); % for U
 hs = 1;
 
@@ -77,6 +77,3 @@ scatter(X,abs(U(end,:)-U_ref));
 
 L_infty = max(abs(U(end,:)-U_ref));
 L_1 = sum(abs(U(end,:)-U_ref));
-
-%% Plot3
-figure;
