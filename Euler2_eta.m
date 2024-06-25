@@ -7,7 +7,8 @@ function eta = Euler2_eta(U_1,Theta,U_ref,N,M,ht,Nt)
 end
 
 function part_u_f_value = part_u_f(U,Theta,N,M)
+%     part_u_f_value = Theta*ones(1,M);
 %     part_u_f_value = 2*((ones(N,1)*U - Theta*ones(1,M))>0);
-%     part_u_f_value = 1./( exp(Theta*ones(1,M)-ones(N,1)*U)+1 );
-    part_u_f_value = -2*(ones(N,1)*U-Theta*ones(1,M)).*exp(-(ones(N,1)*U - Theta*ones(1,M)).^2);
+    part_u_f_value = 1./( exp(Theta*ones(1,M)-ones(N,1)*U)+1 );
+%     part_u_f_value = -2*(ones(N,1)*U-Theta*ones(1,M)).*exp(-(ones(N,1)*U - Theta*ones(1,M)).^2);
 end

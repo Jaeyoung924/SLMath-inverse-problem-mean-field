@@ -6,7 +6,8 @@ function U = Euler2_U(X,Theta,N,M,ht,Nt)
 end
 
 function f_value = f(U,Theta,N,M)
+%     f_value = (ones(N,1)*U).*(Theta*ones(1,M)); % f=u*theta
 %     f_value = ((ones(N,1)*U - Theta*ones(1,M))>0).^2;
-%     f_value = log( 1+exp(ones(N,1)*U - Theta*ones(1,M)) );
-    f_value = exp(-(ones(N,1)*U - Theta*ones(1,M)).^2);
+    f_value = log( 1+exp(ones(N,1)*U - Theta*ones(1,M)) );
+%     f_value = exp(-(ones(N,1)*U - Theta*ones(1,M)).^2);
 end
