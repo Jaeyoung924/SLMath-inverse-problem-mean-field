@@ -1,5 +1,5 @@
 clear all; close all;
-
+ 
 load('N50M100_30000');
 X_50 = X; U_50 = U; U_ref_50 = U_ref;
 
