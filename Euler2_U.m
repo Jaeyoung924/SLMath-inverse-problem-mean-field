@@ -15,5 +15,9 @@ function f_value = f(U,Theta,N,M,f_id)
             f_value = exp(-(ones(N,1)*U - Theta*ones(1,M)).^2);
         case 4
             f_value = (log( 1+exp(ones(N,1)*U - Theta*ones(1,M)) )).^2;
+        case 5
+            f_value = log(1+ (ones(N,1)*U - Theta*ones(1,M)).^2);
+        case 6
+            f_value = 1./(1+(ones(N,1)*U - Theta*ones(1,M)).^2);
     end
 end

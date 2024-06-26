@@ -16,5 +16,9 @@ function part_u_f_value = part_u_f(U,Theta,N,M,f_id)
             part_u_f_value = -2*(ones(N,1)*U-Theta*ones(1,M)).*exp(-(ones(N,1)*U - Theta*ones(1,M)).^2);
         case 4
             part_u_f_value = 2*(log( 1+exp(ones(N,1)*U - Theta*ones(1,M)) ))./( exp(Theta*ones(1,M)-ones(N,1)*U)+1 );
+        case 5
+            part_u_f_value = 2*(1./(1+((ones(N,1)*U - Theta*ones(1,M)).^2))).*((ones(N,1)*U - Theta*ones(1,M))) ;
+        case 6
+            part_u_f_value = -2.*(ones(N,1)*U - Theta*ones(1,M))./(1+(ones(N,1)*U - Theta*ones(1,M)).^2).^2;
     end
 end
