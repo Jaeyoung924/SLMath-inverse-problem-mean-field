@@ -60,6 +60,7 @@ rng(tests);
 % --- Uncomment the lines aboves to run multiple tests ---
 
 Theta = rand(N,1); % Initial data for Theta
+Theta = sort(Theta);
 % Theta = -1 + randn(N,1); % Initial data for Theta
 idx_per = randperm(Total_M); idx_used = idx_per(1:M);
 X = Total_X(idx_used); U_ref = Total_U_ref(idx_used);
