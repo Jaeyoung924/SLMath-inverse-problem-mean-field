@@ -1,7 +1,7 @@
 function eta = Euler2_eta(U_1,Theta,U_ref,N,M,ht,Nt,f_id)
     til_eta = zeros(Nt+1,M); til_eta(1,:) = U_1-U_ref;
     for l = 1 : Nt
-        til_eta(l+1,:) = til_eta(l,:) - (ht/N)*sum(part_u_f(til_eta(Nt-l+2,:),Theta,N,M,f_id),1);
+        til_eta(l+1,:) = til_eta(l,:) + (ht/N)*sum(part_u_f(til_eta(Nt-l+2,:),Theta,N,M,f_id),1);
     end
     eta = flipud(til_eta);
 end
