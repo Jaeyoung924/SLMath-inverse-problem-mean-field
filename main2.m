@@ -8,16 +8,16 @@ N = 25; % number of theta
 Total_M = 1000;
 M = 500; % number of given data
 stop_criterion = 10^(-8);
-max_iter = 10000;
+max_iter = 1e3;
 ht = 0.2; Nt = int64(1/ht); % for U
-hs = 10;
+hs = 100;
 n_tests = 30;
 
 disp(['     Total N','     Total M','           N','           M','         h_s'])
 disp([Total_N, Total_M, N, M, hs])
 
 %% Set function f(u(t,x),\theta)
-f_id = 6; 
+f_id = 3; 
 switch f_id
     case 1
         disp('f(u,\theta) = ((u-\theta)^+).^2')
@@ -55,7 +55,8 @@ Expected_traj = 0;
 
 % --- Uncomment the lines below to run multiple tests ---
 for tests = 1:n_tests
-rng(n_tests);
+disp("Test "+tests)
+rng(tests);
 % --- Uncomment the lines aboves to run multiple tests ---
 
 Theta = rand(N,1); % Initial data for Theta
@@ -84,7 +85,7 @@ while (s<max_iter)
 %         hs = hs*0.9;
 %         break;
 %     end
-    if mod(s,1000)==0
+    if mod(s,max_iter/10)==0
         disp(s)
         Theta_traj = [Theta_traj,Theta];
         s_traj = [s_traj,s];
@@ -140,8 +141,27 @@ scatter(X,U(end,:),'r'); scatter(X,U_ref,'b');
 subplot(1,2,2);
 scatter(X,abs(U(end,:)-U_ref));
 
+xlin = linspace(-3.5,3.5,1e3);
 figure; subplot(1,2,1); histogram(Theta_sol,'Normalization','pdf');
+hold on
+plot(xlin,1/sqrt(2*pi)*exp(-1/2*xlin.^2),'r-','Linewidth',2)
 subplot(1,2,2); histogram(Theta,'Normalization','pdf');
+hold on
+plot(xlin,1/sqrt(2*pi)*exp(-1/2*xlin.^2),'r-','Linewidth',2)
+
+%Tracjetory plot
+[i_end,~] = size(Theta_traj); 
+figure();
+title("$\theta_i(s)$ Trajectories for $N = $"+N+", $M = $"+M+", $h_s = $"+hs,'Interpreter','Latex')
+hold on
+for i = 1:i_end
+    plot(Theta_traj(i,:),s_traj,'k--o','Linewidth',2)
+end
+xlabel('$\theta_i(s)$','Interpreter','Latex')
+ylabel('$s$','Interpreter','Latex')
+grid on
+set(gca,'fontsize',12)
+set(gca,'linewidth',2)
 
 L_infty = max(abs(U(end,:)-U_ref));
 L_1 = norm(U(end,:)-U_ref,1)/M;
